@@ -15,12 +15,12 @@ public class BrowserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("WEBVIEW","Inside Webview");
+        Log.d("WEB_VIEW MESSAGE","Inside Web_view");
 
         setContentView(R.layout.activity_browser);
         mywebView=(WebView) findViewById(R.id.github_web_view);
         mywebView.setWebViewClient(new WebViewClient());
-        mywebView.loadUrl("https://github.com/");
+        mywebView.loadUrl("https://github.com/Chaudhary456/");
         WebSettings webSettings=mywebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
     }

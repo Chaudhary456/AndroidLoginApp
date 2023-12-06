@@ -7,9 +7,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -25,10 +29,18 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity  {
 
+    private static final String CHANNEL_ID = "LOGIN_APP";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /////////Creating Notification Channel////////////
+        createNotificationChannel();
+
+
+
 
         Log.d("know","INSIDE MAIN_ACTIVITY");
         SharedPreferences sharedPreferences = getSharedPreferences("userInfo",Context.MODE_PRIVATE);
@@ -54,6 +66,19 @@ public class MainActivity extends AppCompatActivity  {
         },4000);
 
 
+    }
+
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence channel_name = "My Channel";
+            String channel_description = "Channel Description";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, channel_name, importance);
+            channel.setDescription(channel_description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 

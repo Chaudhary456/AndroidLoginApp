@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,6 +33,32 @@ public class AuthorizedContent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorized_content);
+
+
+        Intent intent = getIntent();
+        if (intent != null && intent.hasExtra("FRAGMENT_TO_LOAD")) {
+            String fragmentIdentifier = intent.getStringExtra("FRAGMENT_TO_LOAD");
+
+            // Load the appropriate fragment based on the identifier
+            FragmentManager fragmentManager = getSupportFragmentManager();
+
+            if (fragmentManager.getBackStackEntryCount() > 0) {
+                // Pop the last fragment from the back stack
+                fragmentManager.popBackStack();
+            }
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            // Check the fragmentIdentifier and add the corresponding fragment
+            if ("FragmentIdentifier".equals(fragmentIdentifier)) {
+                ProfileFragment fragment = new ProfileFragment();
+                fragmentTransaction.replace(R.id.content_main, fragment);
+            }
+            fragmentTransaction.addToBackStack(null);
+            // Commit the transaction
+            fragmentTransaction.commit();
+        }
+
+
 
         drawerLayout = findViewById(R.id.drawer_layout);
         toolbar = findViewById(R.id.toolbar);
@@ -81,6 +108,7 @@ public class AuthorizedContent extends AppCompatActivity {
 
                     //////////Diverting to LoginActivity/////////
                     Intent nextActivity = new Intent(AuthorizedContent.this, LoginActivity.class);
+
                     startActivity(nextActivity);
                 }
                 else if(id == R.id.notes){
@@ -126,6 +154,7 @@ public class AuthorizedContent extends AppCompatActivity {
                 fragmentManager.popBackStack();
             } else {
                 // If no fragments in the back stack, let the default behavior handle the back press
+                finishAffinity();
                 super.onBackPressed();
             }
         }
@@ -149,4 +178,6 @@ public class AuthorizedContent extends AppCompatActivity {
         Uri uri = Uri.parse(url);
         startActivity(new Intent(Intent.ACTION_VIEW,uri));
     }
+
+
 }
