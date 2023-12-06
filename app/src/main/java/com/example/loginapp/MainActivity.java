@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.d("success","INSIDE");
-        SharedPreferences sharedPreferences = getSharedPreferences("accessToken",Context.MODE_PRIVATE);
+        Log.d("know","INSIDE MAIN_ACTIVITY");
+        SharedPreferences sharedPreferences = getSharedPreferences("userInfo",Context.MODE_PRIVATE);
         String accessToken = sharedPreferences.getString("token","");
         Log.d("ACCESS_TOKEN",accessToken);
 
@@ -42,13 +42,13 @@ public class MainActivity extends AppCompatActivity  {
                 Intent nextActivity;
 
                 if(accessToken != ""){
-                    Log.d("know","Home Activity");
-                    nextActivity = new Intent(MainActivity.this,HomeActivity.class);
+                    Log.d("know","Choosing Home Activity");
+                    nextActivity = new Intent(MainActivity.this,AuthorizedContent.class);
                 }else{
-                    Log.d("know","Login Activity");
+                    Log.d("know","Choosing Login Activity");
                     nextActivity = new Intent(MainActivity.this, LoginActivity.class);
                 }
-                Log.d("know","after check");
+                Log.d("know","Switching to chosen activity");
                 startActivity(nextActivity);
             }
         },4000);

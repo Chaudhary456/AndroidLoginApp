@@ -11,7 +11,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class MyAsyncTask extends AsyncTask<String, Void, String> {
+public class MyAsyncTask extends AsyncTask<String, Void, Response> {
     public static final MediaType JSON = MediaType.get("application/json");
 
     OkHttpClient client = new OkHttpClient();
@@ -23,27 +23,28 @@ public class MyAsyncTask extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected String doInBackground(String... params) {
-        Log.d("Inside","11111");
+    protected Response doInBackground(String... params) {
         String url = params[0];
         String json = params[1];
-        String result="";
+        try {
+        Response response;
         RequestBody body = RequestBody.create(json, JSON);
         Request request = new Request.Builder()
                 .url(url)
                 .post(body)
                 .build();
-        try (Response response = client.newCall(request).execute()) {
-            result = response.body().string();
+
+            response = client.newCall(request).execute();
+            Log.d("STATUS_MESSAGE",response.toString());
+            return  response;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Log.d("RESULT",result);
-        return result;
+        return  null;
     }
 
     @Override
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(Response result) {
         taskListener.onEventPost(result);
         super.onPostExecute(result);
     }

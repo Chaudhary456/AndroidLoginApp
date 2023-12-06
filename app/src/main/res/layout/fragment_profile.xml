@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/yellow"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:layout_width="176dp"
+            android:layout_height="176dp"
+            android:id="@+id/profileImageView"
+            android:src="@drawable/baseline_account_circle_24"
+            android:scaleType="centerCrop"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name_tag"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Name :"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/name_data"
+                android:textSize="20sp"
+                android:paddingLeft="20dp"
+                android:textStyle="bold"
+                android:text="NameData"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/email_tag"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Email :"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/email_data"
+                android:textSize="20sp"
+                android:paddingLeft="20dp"
+                android:textStyle="bold"
+                android:text="EmailData"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</FrameLayout>

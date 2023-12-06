@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:text="TEST Application"
+                android:text="WELCOME !"
                 android:id="@+id/loginText"
                 android:textSize="36sp"
                 android:paddingTop="120dp"
