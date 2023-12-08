@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskListene
     EditText login_password;
     Button loginButton;
 
-    ProgressBar progressBar;
+    static ProgressBar progressBar;
     @Override
     public void onEventPost(Response response) {
 
@@ -81,6 +81,8 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskListene
                 /////////////// Alert Box ////////////////
                 showDialog("Welcome",loginResponse.getFirstName());
 
+
+
                 /////////////// Diverting back to Home Activity////////////////
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -92,20 +94,9 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskListene
                     }
                 }, 2000);
 
+                ///////////////GENERATING NOTIFICATION///////////
+                generateNotification();
 
-                PendingIntent pendingIntent = createPendingIntent();
-
-                // Build the notification
-                NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "LOGIN_APP")
-                        .setSmallIcon(R.drawable.baseline_android_24)
-                        .setContentTitle("Login Successful!")
-                        .setContentText("Tap to see your Profile")
-                        .setContentIntent(pendingIntent)
-                        .setAutoCancel(true);  // Automatically dismiss the notification when tapped
-
-                // Show the notification
-                NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(1, builder.build());
             }
         }else{
             showDialog("Technical Glitch","Try Again");
@@ -176,4 +167,23 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskListene
         return PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
+    private void generateNotification(){
+
+        PendingIntent pendingIntent = createPendingIntent();
+
+        // Build the notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "LOGIN_APP")
+                .setSmallIcon(R.drawable.baseline_android_24)
+                .setContentTitle("Login Successful!")
+                .setContentText("Tap to see your Profile")
+                .setContentIntent(pendingIntent)
+                .setStyle(new NotificationCompat.BigTextStyle()
+                        .bigText("Hi You have successfully loggedIn , We have prepared a profile for you tap this notification to see your profile page."))
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setAutoCancel(true);  // Automatically dismiss the notification when tapped
+
+        // Show the notification
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(1, builder.build());
+    }
 }

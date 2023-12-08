@@ -12,6 +12,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -35,6 +36,14 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //////////Registering Broadcast Receiver//////////////
+        ContentReceiver contentReceiver = new ContentReceiver();
+        registerReceiver(contentReceiver,new IntentFilter("android.intent.action.AIRPLANE_MODE"));
+        registerReceiver(contentReceiver,new IntentFilter("android.intent.action.ACTION_POWER_CONNECTED"));
+        registerReceiver(contentReceiver,new IntentFilter("android.intent.action.ACTION_POWER_DISCONNECTED"));
+        registerReceiver(contentReceiver,new IntentFilter("android.intent.action.BOOT_COMPLETED"));
+        registerReceiver(contentReceiver,new IntentFilter("android.intent.action.MEDIA_SHARED"));
 
         /////////Creating Notification Channel////////////
         createNotificationChannel();
@@ -80,6 +89,7 @@ public class MainActivity extends AppCompatActivity  {
             notificationManager.createNotificationChannel(channel);
         }
     }
+
 
 
 }
