@@ -120,6 +120,9 @@ public class AuthorizedContent extends AppCompatActivity {
                 }else if(id == R.id.profile){
                     Log.d("selection","Profile selected");
                     loadFragment(new ProfileFragment());
+                }else if(id == R.id.image){
+                    Intent nextActivity = new Intent(AuthorizedContent.this, ImageActivity.class);
+                    startActivity(nextActivity);
                 }else{
                     Log.d("selection","Home selected");
                     FragmentManager fragmentManager = getSupportFragmentManager();

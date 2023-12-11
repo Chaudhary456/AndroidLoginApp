@@ -20,4 +20,8 @@
         android:id="@+id/profile"
         android:title="Profile"
         android:icon="@drawable/baseline_account_circle_24"/>
+    <item
+        android:id="@+id/image"
+        android:title="Image"
+        android:icon="@drawable/baseline_camera_alt_24"/>
 </menu>
