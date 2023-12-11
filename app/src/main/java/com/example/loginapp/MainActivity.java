@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //////////Registering Broadcast Receiver//////////////
+        ///Registering Broadcast Receiver
         ContentReceiver contentReceiver = new ContentReceiver();
         registerReceiver(contentReceiver,new IntentFilter("android.intent.action.AIRPLANE_MODE"));
         registerReceiver(contentReceiver,new IntentFilter("android.intent.action.ACTION_POWER_CONNECTED"));
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity  {
         registerReceiver(contentReceiver,new IntentFilter("android.intent.action.BOOT_COMPLETED"));
         registerReceiver(contentReceiver,new IntentFilter("android.intent.action.MEDIA_SHARED"));
 
-        /////////Creating Notification Channel////////////
+        //Creating Notification Channel
         createNotificationChannel();
 
 

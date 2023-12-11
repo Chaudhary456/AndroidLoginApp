@@ -106,7 +106,7 @@ public class AuthorizedContent extends AppCompatActivity {
                     editor.putString("email","");
                     editor.apply();
 
-                    //////////Diverting to LoginActivity/////////
+                    //Diverting to LoginActivity
                     Intent nextActivity = new Intent(AuthorizedContent.this, LoginActivity.class);
 
                     startActivity(nextActivity);
@@ -121,6 +121,7 @@ public class AuthorizedContent extends AppCompatActivity {
                     Log.d("selection","Profile selected");
                     loadFragment(new ProfileFragment());
                 }else if(id == R.id.image){
+                    Log.d("selection","Image Activity selected");
                     Intent nextActivity = new Intent(AuthorizedContent.this, ImageActivity.class);
                     startActivity(nextActivity);
                 }else{
@@ -132,11 +133,10 @@ public class AuthorizedContent extends AppCompatActivity {
                         // Pop the last fragment from the back stack
                         fragmentManager.popBackStack();
                     }
-//                    loadFragment(new HomeFragment() );
                 }
 
 
-                //////Close Drawer after an item is selected./////////
+                //Close Drawer after an item is selected.
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }

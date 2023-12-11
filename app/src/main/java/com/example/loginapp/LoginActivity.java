@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskListene
                     throw new RuntimeException(e);
                 }
 
-                ////////Storing Shared-preference/////////
+                //Storing Shared-preference
                 SharedPreferences sharedPreferences = getSharedPreferences("userInfo", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("firstname", loginResponse.getFirstName());
@@ -78,12 +78,12 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskListene
                 editor.apply();
 
 
-                /////////////// Alert Box ////////////////
+                // Alert Box
                 showDialog("Welcome",loginResponse.getFirstName());
 
 
 
-                /////////////// Diverting back to Home Activity////////////////
+                // Diverting back to Home Activity
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskListene
                     }
                 }, 2000);
 
-                ///////////////GENERATING NOTIFICATION///////////
+                //GENERATING NOTIFICATION
                 generateNotification();
 
             }
@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskListene
 
         progressBar = findViewById(R.id.progressBar);
 
-        ///////////Disabling Progress Bar//////////
+        //Disabling Progress Bar
         progressBar.setVisibility(View.GONE);
 
         login_username = findViewById(R.id.loginusername);
@@ -138,7 +138,7 @@ public class LoginActivity extends AppCompatActivity implements AsyncTaskListene
 
                     String jsonString = jsonObject.toString();
                     login.execute(TinyURL, jsonString);
-                    /////////Setting Progress Spinner/////////
+                    //Setting Progress Spinner
                     progressBar.setVisibility(view.VISIBLE);
                 }
             }
